@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find Me</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Find Me</h1>
+    <nav>
+      <a href="#story">Our Story</a>
+      <a href="#whatwedo">What We Do</a>
+      <a href="#report">Report Missing</a>
+      <a href="#nearby">Nearby Users</a>
+    </nav>
+  </header>
+
+  <section id="story">
+    <h2>Our Story</h2>
+    <p>Many people like the elderly or children with autism can go missing and find it hard to return. Families often struggle to locate them quickly, especially when help is not nearby.</p>
+  </section>
+
+  <section id="whatwedo">
+    <h2>What We Do</h2>
+    <p>We help families by sharing alerts about missing individuals with nearby users using real-time location features.</p>
+  </section>
+
+  <section id="report">
+    <h2>Report a Missing Person</h2>
+    <form id="reportForm">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="age">Age:</label><br>
+      <input type="number" id="age" name="age" required><br><br>
+
+      <label for="description">Description:</label><br>
+      <textarea id="description" name="description" required></textarea><br><br>
+
+      <label for="photo">Upload Photo:</label><br>
+      <input type="file" id="photo" name="photo"><br><br>
+
+      <button type="submit">Submit Report</button>
+    </form>
+  </section>
+
+  <section id="nearby">
+    <h2>Nearby Users</h2>
+    <button onclick="notifyNearbyUsers()">Alert Nearby Users</button>
+    <p id="notification"></p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Report Submitted</title>
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <h1>Report Submitted Successfully ✅</h1>
+  <p>Nearby users have been notified based on the last seen location.</p>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const lat = parseFloat(localStorage.getItem('lat'));
+    const lon = parseFloat(localStorage.getItem('lon'));
+
+    if (!lat || !lon) {
+      document.getElementById("map").innerText = "Location not available.";
+    } else {
+      const map = L.map('map').setView([lat, lon], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © OpenStreetMap contributors',
+      }).addTo(map);
+
+      // Mark last seen location
+      L.marker([lat, lon]).addTo(map)
+        .bindPopup('Last seen location.')
+        .openPopup();
+
+      // Simulated nearby users
+      const nearbyUsers = [
+        { lat: lat + 0.002, lon: lon + 0.001 },
+        { lat: lat - 0.001, lon: lon - 0.002 },
+        { lat: lat + 0.0015, lon: lon - 0.001 },
+      ];
+
+      nearbyUsers.forEach(user => {
+        L.circle([user.lat, user.lon], {
+          color: 'blue',
+          radius: 50,
+        }).addTo(map).bindPopup("Nearby user");
+      });
+    }
+  </script>
+</body>
+</html>
